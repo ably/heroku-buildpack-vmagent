@@ -24,3 +24,10 @@ scrape_configs:
   - job_name: <%= ENV['VMAGENT_APP_JOB_NAME'] || 'web' %>
     static_configs:
     - targets: ['localhost:<%= ENV['PORT'] %>']
+
+  - job_name: instance
+    metric_relabel_configs:
+    - source_labels: [instance]
+      regex: '.*'
+      replacement: <%= ENV['DYNO'] %>
+      target_label: instance
