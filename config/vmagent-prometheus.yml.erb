@@ -24,7 +24,7 @@ scrape_configs:
   - job_name: <%= ENV['VMAGENT_APP_JOB_NAME'] || 'web' %>
     stream_parse: <%= ENV.fetch('VMAGENT_STREAM_PARSE', 'true') == 'true' %>
     static_configs:
-    - targets: ['localhost:<%= ENV['PORT'] %>']
+    - targets: ['localhost:<%= ENV['VMAGENT_SCRAPE_PORT'] || ENV['PORT'] %>']
     basic_auth:
       username: <%= ENV['VMAGENT_SCRAPE_USERNAME'] %>
       password: <%= ENV['VMAGENT_SCRAPE_PASSWORD'] %>
