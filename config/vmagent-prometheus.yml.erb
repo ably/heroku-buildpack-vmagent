@@ -3,12 +3,17 @@ require 'json'
 
 external_labels = {
   dyno: ENV['DYNO'],
+  app: ENV['HEROKU_APP_NAME'],
 }
+
+if ENV.key?('HEROKU_PARENT_APP_NAME')
+  external_labels.merge!(parent_app: ENV['HEROKU_PARENT_APP_NAME'])
+end
 
 if ENV.key?('VMAGENT_EXTERNAL_LABELS')
   ENV['VMAGENT_EXTERNAL_LABELS'].split(',').each do |label|
     key, val = label.split('=', 2)
-    external_labels[key] = val
+    external_labels[key.to_sym] = val
   end
 end
 %>
