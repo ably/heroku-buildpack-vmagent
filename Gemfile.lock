@@ -7,7 +7,7 @@ GEM
       base64
     puma (7.2.0)
       nio4r (~> 2.0)
-    rack (3.2.5)
+    rack (3.2.6)
 
 PLATFORMS
   x86_64-darwin-17
